@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include "parsenexec.h"
 
+/** 
+ * Maximum size of input buffer is 100
+ * Initialize the array to "look around" so it can be the default command 
+ * that is executed whenever we enter a new stage.
+ */
 static char input[100] = "look around";
-
+ 
 /**
  * A static function to get user inputs from the stdin stream
  * @return whether an input was captured properly or not
@@ -16,14 +22,14 @@ static bool get_input(void){
 }
 
 /**
- * continuously calls the get_input() function to keep the game going
+ * continuously calls the two major functions to keep the game going
  */
 int main (){
 	printf("Welcome to our VIRTUAL ESCAPE ROOM!\n");
 	// The current stage, initialized to the first stage
 	int stage = 1;
 	
-	while (get_input());
+	while (parse_and_execute(input) && get_input());
 	printf("\nByeBye!\n");
 	
 	return 0;
