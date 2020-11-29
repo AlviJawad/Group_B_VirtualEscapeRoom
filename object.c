@@ -19,8 +19,8 @@ OBJECT_t objs[] = {
 	
 	{"a dusty letter", "letter", hidden_object, NULL , stage1},
 	{"a broken clock", "clock", visible_object, NULL , stage1},
-	{"a silver key", key1, usable_object, NULL, stage1},
-	{"a silver door", door1, visible_object, NULL, stage1}
+	{"a silver key", "key1", usable_object, NULL, stage1},
+	{"a silver door", "door1", visible_object, NULL, stage1}
 	
 	/***** stage 2 objects *****/
 	

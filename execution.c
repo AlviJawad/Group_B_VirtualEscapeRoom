@@ -8,7 +8,7 @@
 void execute_look(const char *arg){
 	if ((arg != NULL) && (strcmp(arg, "around") == 0)){
 		printf("You are in %s.\n", player->location->description);
-		list_objects_at_location(player->location);
+		list_objects_at_location(player->location, visible_object);
 	}
 	else {
 		/* Another witty message dictating what the user sees when he tries to look at something weird */
@@ -58,12 +58,27 @@ void execute_move(const char *arg){
 	}
 }
 
+void execute_get(const char *arg){
+	if (arg == NULL){
+		printf("Maybe you should decide what to get first\n");	
+		return;
+	}
+	OBJECT_t *obj = get_object(arg);
+	if (obj == NULL){
+		printf("%s does not exist in this world!!\n", arg);		// if no such object exists
+	} else if (obj->type != usable_object){
+		printf("%s is too large to fit in your bag\n", arg);	
+	} else if (obj->location != player->location){			// player and object are not in the same location
+		printf("You don't see any %s in here\n", arg);		// player might try to get key2 while in stage1
+	} else {
+		obj->location = player;				
+		printf("You moved %s to your bag\n", arg);
+	}
+}
 
 void execute_check(){
-	if (list_objects_at_location(player) == 0){
+	if (list_objects_at_location(player, usable_object) == 0){
 		printf("You couldn't find anything of importance\n");
-	} else {
-		list_objects_at_location(player);
 	}
 }
 

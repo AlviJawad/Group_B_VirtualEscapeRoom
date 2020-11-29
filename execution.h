@@ -14,6 +14,8 @@ extern void execute_examine(const char *arg);
 
 extern void execute_move(const char *arg);
 
+extern void execute_get(const char *arg);
+
 extern void execute_help();
 
 extern void execute_check();

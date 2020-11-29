@@ -20,7 +20,7 @@ bool parse_and_execute(char *input){
 		} else if (strcmp(command, "move") == 0){			// User enters "move <arg>"
 			execute_move(arg);
 		} else if (strcmp(command, "get") == 0){			// User enters "get <arg>"
-//			execute_get(arg);
+			execute_get(arg);
 		} else if (strcmp(command, "bag") == 0){			// User enters "bag"
 			execute_check();
 		} else if (strcmp(command, "ask") == 0){			// User enters "ask <arg>"
