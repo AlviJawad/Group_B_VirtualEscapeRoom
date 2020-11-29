@@ -17,8 +17,12 @@ bool parse_and_execute(char *input){
 		/* User enters "look <arg>" */
 		else if (strcmp(command, "look") == 0){
 			/* Show different information based on the current stage */
-//			execute_look(arg);
-//			show_stage_information(stage);	
+			execute_look(arg);	
+		}
+		/* User enters "examine <arg>" */
+		else if (strcmp(command, "examine") == 0){
+			/* Show detailed info about the object */
+			execute_examine(arg);	
 		}
 		/* User enters "move <arg>" */
 		else if (strcmp(command, "move") == 0){

@@ -4,23 +4,25 @@
 
 
 /***** OBJECT Types and States *****/
-enum type{
+typedef enum type{
 	location = 0,
 	item = 1,
 	actor = 2
-};
-//enum state{
+} type_t;
+
+//typedef enum state{
 //	closed = 0, open = 1,
 //	not_obtained = 2, obtained = 3,
 //	normal = 4
-//};
+//}state_t;
 
 
 /***** OBJECT Structure *****/
 typedef struct object{
 	const char *description;
 	const char *tag;
-	enum type;
+	type_t type;
+	const char *detailed_description;
 	struct object *location;
 } OBJECT_t;
 extern OBJECT_t objs[];
