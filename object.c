@@ -12,8 +12,8 @@ OBJECT_t objs[] = {
 	
 	/***** stage 1 objects *****/
 	{"a wooden table", "table", visible_object, 
-	"The table looks strudy at first\n"
-	"But you see that one of the front legs is rather unstable\n"
+	"The table seems strudy at first glance\n"
+	"Upon further examination, you find that one of the front legs is rather unstable\n"
 	"There is also a letter on the table\n"
 	"You might be able to read the contents\n", stage1},
 	

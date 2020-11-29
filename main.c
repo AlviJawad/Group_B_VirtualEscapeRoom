@@ -18,6 +18,7 @@ static bool get_input(void){
 	printf("\nWhat would you like to do?");
 	printf("\n> ");
 	bool input_captured = fgets(input, sizeof(input), stdin) != NULL;
+	printf("\n");
 	return input_captured;
 }
 
@@ -26,8 +27,6 @@ static bool get_input(void){
  */
 int main (){
 	printf("Welcome to our VIRTUAL ESCAPE ROOM!\n");
-	// The current stage, initialized to the first stage
-	int stage = 1;
 	
 	while (parse_and_execute(input) && get_input());
 	printf("\nByeBye!\n");
