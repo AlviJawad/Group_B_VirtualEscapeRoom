@@ -1,16 +1,14 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
 
-#include <stdio.h>
+
 
 /***** OBJECT Types and States *****/
 enum type{
 	location = 0,
 	item = 1,
-	actor = 3
+	actor = 2
 };
-
-
 //enum state{
 //	closed = 0, open = 1,
 //	not_obtained = 2, obtained = 3,
@@ -25,25 +23,23 @@ typedef struct object{
 	enum type;
 	struct object *location;
 } OBJECT_t;
+extern OBJECT_t objs[];
 
-OBJECT_t objs[];
+/***** Object References using symbolic names *****/
+/* Stages */
+#define stage1 	(objs + 0)
+#define stage2 	(objs + 1)
+#define stage3 	(objs + 2)
+/* Actors */
+#define player 	(objs + 3)
+/* Objects */
+#define table 	(objs + 4)
+#define letter	(objs + 5)
+#define clock 	(objs + 6)
 
+/* End: always update this! */
+#define endOfObjs (objs + 7)
 
-/***** Object Descriptions *****/
-OBJECT_t objs[] = {
-	/***** stage1 *****/
-	{"a bright white room", "stage1", location, NULL},		// stages aren't part of any locations
-	{"an wooden table", "table", item, stage1},
-	{"a dusty letter", "letter", item, stage1},
-	{"a broken clock", "clock", item, stage1},
-	{"yourself", "yourself", actor, stage1},
-
-	/***** stage2 *****/
-	{"a dark yellow room", "stage2", location, NULL},
-	
-	/***** stage3 *****/
-	{"a crimson red room", "stage3", location, NULL}
-};
 
 
 #endif
