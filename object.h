@@ -25,6 +25,7 @@ typedef struct object{
 } OBJECT_t;
 extern OBJECT_t objs[];
 
+
 /***** Object References using symbolic names *****/
 /* Stages */
 #define stage1 	(objs + 0)
@@ -36,9 +37,8 @@ extern OBJECT_t objs[];
 #define table 	(objs + 4)
 #define letter	(objs + 5)
 #define clock 	(objs + 6)
-
 /* End: always update this! */
-#define endOfObjs (objs + 7)
+#define end_of_objs (objs + 7)
 
 
 
