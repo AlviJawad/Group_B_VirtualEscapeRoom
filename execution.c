@@ -36,22 +36,27 @@ void execute_examine(const char *arg){
 	}
 }
 
-//void execute_move(const char *arg){
-//	OBJECT *obj = getVisible("where you want to go", arg);
-//	if (obj == NULL){
-//		// Empty block
-//	}
-//	else if (	obj->location == NULL &&			// You can only go to a valid location
-//			obj != player->location){			// player isn't trying to go where he already is
-//		printf("Moving...\n");
-//		printf("... ... ...\n");
-//		player->location = obj;					// player is in a new location now, update his location
-//		execute_look("around");
-//	}
-//	else {
-//		printf("You're really don't want to go %s right now, it's dangerous!\n", arg);
-//	}
-//}
+void execute_move(const char *arg){
+	if (arg == NULL){
+		printf("Maybe you should decide where to go first\n");	
+		return;
+	}
+	OBJECT_t *obj = get_object(arg);
+	if (obj == NULL){
+		printf("%s does not exist in this world!!\n", arg);		// if no such place exists
+	} else if (obj == player->location){			// player is trying to move to where he already is
+		printf("You're already in %s\n", arg);	
+	} else if (obj->type != location){			// trying to move to a non-location
+		printf("%s is not a location\n", arg);
+	} else if (obj->type == location){			// You can only go to a valid location
+		printf("Moving...\n");
+		printf("... ... ...\n");
+		player->location = obj;					// player is in a new location now, update his location
+		execute_look("around");					// look around to see the new place
+	} else {
+		printf("You're really don't want to move to %s right now, it's dangerous!\n", arg);
+	}
+}
 
 
 void execute_help(){
@@ -60,7 +65,7 @@ void execute_help(){
 	"1. look around: 	look around to find interactive objects\n"
 	"2. examine <object>: 	examine to get detailed information about an object\n"
 	"3. move <stage>: 	move to a stage\n"
-	"4. get <object>: 	try to get an small object and put it into your bag\n"
+	"4. get <object>: 	put a usable object in your bag for later use\n"
 	"5. use <object>: 	try to make use of an object in your bag\n"
 	"6. open <door>: 	try to open a door\n"
 	"7. hint: 		get a hint if you are stuck\n"

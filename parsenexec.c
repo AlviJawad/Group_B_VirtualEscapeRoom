@@ -18,7 +18,7 @@ bool parse_and_execute(char *input){
 		} else if (strcmp(command, "examine") == 0){		// User enters "examine <arg>"
 			execute_examine(arg);		// Show detailed info about the object
 		} else if (strcmp(command, "move") == 0){			// User enters "move <arg>"
-//			execute_move(arg);
+			execute_move(arg);
 		} else if (strcmp(command, "ask") == 0){			// User enters "ask <arg>"
 			if (strcmp (arg, "hint") == 0){				// User asks for hint
 //				execute_hint();
@@ -31,7 +31,9 @@ bool parse_and_execute(char *input){
 			}
 		} else if (strcmp(command, "help") == 0){
 			execute_help();
-		} else {
+		} else if (strcmp(command, "hint") == 0){
+//			execute_hint();
+		}else {
 			/* Add an interesting messsage if the user tries to do something absurd */
 			printf("You tried to %s.\n", command);
 			printf("Turns out, %sing %s is impossible right now!!\n", command, arg);
