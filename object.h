@@ -6,8 +6,10 @@
 /***** OBJECT Types and States *****/
 typedef enum type{
 	location = 0,
-	item = 1,
-	actor = 2
+	visible_object = 1,
+	hidden_object = 2,
+	usable_object = 3,
+	actor = 4
 } type_t;
 
 //typedef enum state{
@@ -39,8 +41,10 @@ extern OBJECT_t objs[];
 #define table 	(objs + 4)
 #define letter	(objs + 5)
 #define clock 	(objs + 6)
+#define key1 	(objs + 7)
+#define door1 	(objs + 8)
 /* End: always update this! */
-#define end_of_objs (objs + 7)
+#define end_of_objs (objs + 9)
 
 
 
