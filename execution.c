@@ -4,6 +4,7 @@
 #include "object.h"
 #include "helper.h"
 
+
 void execute_look(const char *arg){
 	if ((arg != NULL) && (strcmp(arg, "around") == 0)){
 		printf("You are in %s.\n", player->location->description);
@@ -51,3 +52,17 @@ void execute_examine(const char *arg){
 //		printf("You're really don't want to go %s right now, it's dangerous!\n", arg);
 //	}
 //}
+
+
+void execute_help(){
+	printf("This is a list of helpful common commands:\n");
+	printf(
+	"1. look around: 	look around to find interactive objects\n"
+	"2. examine <object>: 	examine to get detailed information about an object\n"
+	"3. move <stage>: 	move to a stage\n"
+	"4. get <object>: 	try to get an small object and put it into your bag\n"
+	"5. use <object>: 	try to make use of an object in your bag\n"
+	"6. open <door>: 	try to open a door\n"
+	"7. hint: 		get a hint if you are stuck\n"
+	"8. help: 		get a list of helpful common commands\n");
+}

@@ -11,7 +11,7 @@ OBJECT_t objs[] = {
 	{"yourself", "yourself", actor, NULL, stage1},				// player starts in stage 1
 	
 	/***** stage 1 objects *****/
-	{"an wooden table", "table", item, 
+	{"a wooden table", "table", item, 
 	"The table looks strudy at first\n"
 	"But you see that one of the front legs is rather unstable\n"
 	"There is also a letter on the table\n"
