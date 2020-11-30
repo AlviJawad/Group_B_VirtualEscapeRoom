@@ -81,7 +81,7 @@ void execute_get(const char *arg){
 	}
 }
 
-void execute_check(){
+void execute_check(void){
 	if (list_objects_at_location(player, usable_object) == 0){
 		printf("You couldn't find anything of importance\n");
 	}

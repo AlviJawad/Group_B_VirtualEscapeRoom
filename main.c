@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "parsenexec.h"
+#include "object.h"
 
 /** 
  * Maximum size of input buffer is 100
@@ -22,13 +23,24 @@ static bool get_input(void){
 	return input_captured;
 }
 
+static bool game_cleared(void){
+	if (stage1->state == unrestricted && stage2->state == unrestricted && stage3->state == unrestricted){
+		printf("CONGRATS!!\n"
+		"You have just cleared all the different levels!\n"
+		"You get a PRIZEXYZ!!!\n");
+		return true;
+	} else {
+		return false;
+	}
+}
+
 /**
  * continuously calls the two major functions to keep the game going
  */
 int main (){
 	printf("Welcome to our VIRTUAL ESCAPE ROOM!\n");
 	
-	while (parse_and_execute(input) && get_input());
+	while (parse_and_execute(input) && get_input() && !game_cleared());
 	printf("\nByeBye!\n");
 	
 	return 0;

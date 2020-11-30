@@ -20,6 +20,6 @@ extern void execute_use(const char *arg);
 
 extern void execute_open(const char *arg);
 
-extern void execute_help();
+extern void execute_help(void);
 
-extern void execute_check();
+extern void execute_check(void);
