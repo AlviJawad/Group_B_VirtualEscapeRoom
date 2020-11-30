@@ -12,11 +12,11 @@ typedef enum type{
 	actor = 4
 } type_t;
 
-//typedef enum state{
-//	closed = 0, open = 1,
-//	not_obtained = 2, obtained = 3,
-//	normal = 4
-//}state_t;
+typedef enum state{
+	closed = 0, open = 1,
+	confined = 2, unrestricted = 3,
+	regular = 4
+} state_t;
 
 
 /***** OBJECT Structure *****/
@@ -24,6 +24,7 @@ typedef struct object{
 	const char *description;
 	const char *tag;
 	type_t type;
+	state_t state;
 	const char *detailed_description;
 	struct object *location;
 } OBJECT_t;
