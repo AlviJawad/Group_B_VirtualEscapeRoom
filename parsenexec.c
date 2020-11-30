@@ -17,12 +17,14 @@ bool parse_and_execute(char *input){
 			execute_look(arg);					// Show different information based on the current stage
 		} else if (strcmp(command, "examine") == 0){		// User enters "examine <arg>"
 			execute_examine(arg);				// Show detailed info about the object
-		} else if (strcmp(command, "move") == 0){			// User enters "move <arg>"
-			execute_move(arg);
+		} else if (strcmp(command, "go") == 0){			// User enters "go <arg>"
+			execute_go(arg);
 		} else if (strcmp(command, "get") == 0){			// User enters "get <arg>"
 			execute_get(arg);
 		} else if (strcmp(command, "bag") == 0){			// User enters "bag"
 			execute_check();
+		} else if (strcmp(command, "open") == 0){			// User enters "open <arg>"
+			execute_open();
 		} else if (strcmp(command, "ask") == 0){			// User enters "ask <arg>"
 			if (strcmp (arg, "hint") == 0){				// User asks for hint
 //				execute_hint();

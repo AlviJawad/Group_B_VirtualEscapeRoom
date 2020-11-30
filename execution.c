@@ -36,7 +36,7 @@ void execute_examine(const char *arg){
 	}
 }
 
-void execute_move(const char *arg){
+void execute_go(const char *arg){
 	if (arg == NULL){
 		printf("Maybe you should decide where to go first\n");	
 		return;
@@ -48,7 +48,10 @@ void execute_move(const char *arg){
 		printf("You're already in %s\n", arg);	
 	} else if (obj->type != location){			// trying to move to a non-location
 		printf("%s is not a location\n", arg);
-	} else if (obj->type == location){			// You can only go to a valid location
+	} else if (player->location->state == confined){			// trying to move from a confined loaction
+		printf("It seems that all exits from this room are sealed\n"
+		"You should look for a way to open doors\n", arg);
+	} else if (player->location->state == unrestricted){			// move from an unrestricted area
 		printf("Moving...\n");
 		printf("... ... ...\n");
 		player->location = obj;					// player is in a new location now, update his location
@@ -84,13 +87,33 @@ void execute_check(){
 	}
 }
 
+void execute_open(const char *arg){
+	if (arg == NULL){
+		printf("Maybe you should find something to open first\n");	
+		return;
+	}
+	OBJECT_t *obj = get_object(arg);
+	if (obj == NULL){
+		printf("%s does not exist in this world!!\n", arg);		// if no such object exists
+	} else if (obj->location != player->location){				// door and player not in the same room
+		printf("You don't see any %s in here", arg);	
+	} else if (obj->state == closed){					
+		printf("It seems that %s is locked\n"
+		"You should find something that can open it\n", arg);				
+	} else {			// Push and open the door
+		player->location->state = unrestricted;
+		printf("The door opens with a creak!\n"
+		"You see a dark passage lighting up\n"
+		"You are now able to move from this place");
+	}
+}
 
 void execute_help(){
 	printf("This is a list of helpful common commands:\n"
 	"****************************************************************************\n"
 	"1. look around: 	look around to find interactive objects\n"
 	"2. examine <object>: 	examine to get detailed information about an object\n"
-	"3. move <stage>: 	move to a stage\n"
+	"3. go <stage>: 	go to a different stage\n"
 	"4. get <object>: 	put a usable object in your bag for later use\n"
 	"5. use <object>: 	try to make use of an object in your bag\n"
 	"6. open <door>: 	try to open a door\n"
