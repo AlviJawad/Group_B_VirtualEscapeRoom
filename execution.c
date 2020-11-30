@@ -87,6 +87,46 @@ void execute_check(){
 	}
 }
 
+void execute_use(const char *arg){
+	if (arg == NULL){
+		printf("Maybe you should decide what you want to use first\n");	
+		return;
+	}
+	OBJECT_t *obj = get_object(arg);
+	if (obj == NULL){
+		printf("%s does not exist in this world!!\n", arg);		// if no such object exists
+	} else if (obj->type != usable_object){
+		printf("%s is not usable\n", arg);	
+	} else if (obj->location != player){					// player does not have object yet
+		printf("You have not found %s yet\n", arg);	
+	} else if (obj->location == player){					
+		if (strcmp(obj->tag,"key1")==0 && strcmp(player->location->tag,"stage1")==0)	{
+			if (door1->state == open){
+				printf("The silver door seems to be already open\n");
+			} else {
+				door1->state = open;
+				printf("You used %s on the silver door\nThe door can now be opened\n", arg);
+			}
+		} else if (strcmp(obj->tag,"key2")==0 && strcmp(player->location->tag,"stage2")==0)	{
+			if (door2->state == open){
+				printf("The gold door seems to be already open\n");
+			} else {
+				door2->state = open;
+				printf("You used %s on the gold door\nThe door can now be opened\n", arg);
+			}
+		} else if (strcmp(obj->tag,"key3")==0 && strcmp(player->location->tag,"stage3")==0)	{
+			if (door3->state == open){
+				printf("The ruby door seems to be already open\n");
+			} else {
+				door3->state = open;
+				printf("You used %s on the ruby door\nThe door can now be opened\n", arg);
+			}
+		}
+	} else {	
+		printf("You failed to use %s\n", arg);
+	}
+}
+
 void execute_open(const char *arg){
 	if (arg == NULL){
 		printf("Maybe you should find something to open first\n");	
@@ -96,15 +136,15 @@ void execute_open(const char *arg){
 	if (obj == NULL){
 		printf("%s does not exist in this world!!\n", arg);		// if no such object exists
 	} else if (obj->location != player->location){				// door and player not in the same room
-		printf("You don't see any %s in here", arg);	
+		printf("You don't see any %s in here\n", arg);	
 	} else if (obj->state == closed){					
 		printf("It seems that %s is locked\n"
 		"You should find something that can open it\n", arg);				
 	} else {			// Push and open the door
 		player->location->state = unrestricted;
-		printf("The door opens with a creak!\n"
-		"You see a dark passage lighting up\n"
-		"You are now able to move from this place");
+		printf("The door opens with a loud creak!\n"
+		"You see two dark passages lighting up\n"
+		"You are now able to move from this place\n");
 	}
 }
 

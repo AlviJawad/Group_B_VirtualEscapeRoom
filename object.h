@@ -44,10 +44,10 @@ extern OBJECT_t objs[];
 #define clock 	(objs + 6)
 #define key1 	(objs + 7)
 #define door1 	(objs + 8)
-#define key1 	(objs + 9)
-#define door1 	(objs + 10)
-#define key1 	(objs + 11)
-#define door1 	(objs + 12)
+#define key2 	(objs + 9)
+#define door2 	(objs + 10)
+#define key3 	(objs + 11)
+#define door3 	(objs + 12)
 /* End: always update this! */
 #define end_of_objs (objs + 13)
 

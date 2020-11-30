@@ -16,6 +16,8 @@ extern void execute_go(const char *arg);
 
 extern void execute_get(const char *arg);
 
+extern void execute_use(const char *arg);
+
 extern void execute_open(const char *arg);
 
 extern void execute_help();
