@@ -29,6 +29,7 @@ void execute_examine(const char *arg){
 			/* Show detailed description of the object */
 			printf("You carefully examine the %s\n", obj->tag);
 			printf("%s\n", obj->detailed_description);
+			/** Trigger puzzle1 **/
 			if (strcmp(arg, "clock") == 0 && player->location == stage1){
 				trigger_puzzle1();
 			}
@@ -105,7 +106,7 @@ void execute_get(const char *arg){
 				obj->location = player;				
 				printf("You moved %s to your bag\n", arg);
 			} else {
-				printf("You don't see any %s here\n", arg);
+				printf("You have not found %s yet\n", arg);
 			}
 		} else if (strcmp(arg, "key2") == 0){
 			/** Conditions for getting key2 **/
