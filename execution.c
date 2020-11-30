@@ -68,6 +68,8 @@ void execute_get(const char *arg){
 		printf("%s does not exist in this world!!\n", arg);		// if no such object exists
 	} else if (obj->type != usable_object){
 		printf("%s is too large to fit in your bag\n", arg);	
+	} else if (obj->location == player){					
+		printf("You already have %s\n", arg);
 	} else if (obj->location != player->location){			// player and object are not in the same location
 		printf("You don't see any %s in here\n", arg);		// player might try to get key2 while in stage1
 	} else {
