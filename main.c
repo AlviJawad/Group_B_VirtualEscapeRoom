@@ -11,7 +11,7 @@
 static char input[100] = "look around";
  
 /**
- * A static function to get user inputs from the stdin stream
+ * A function to get user inputs from the stdin stream
  * @return whether an input was captured properly or not
  */
 static bool get_input(void){
@@ -23,11 +23,15 @@ static bool get_input(void){
 	return input_captured;
 }
 
+/**
+ * A function to check whether all three stages were cleared
+ * @return whether the game was cleared
+ */
 static bool game_cleared(void){
 	if (stage1->state == unrestricted && stage2->state == unrestricted && stage3->state == unrestricted){
 		printf("CONGRATS!!\n"
-		"You have just cleared all the different levels!\n"
-		"You get a PRIZEXYZ!!!\n");
+		"You have just cleared the game!\n"
+		"You get a GRANDPRIZEXYZ!!!\n");
 		return true;
 	} else {
 		return false;
@@ -35,7 +39,7 @@ static bool game_cleared(void){
 }
 
 /**
- * continuously calls the two major functions to keep the game going
+ * Continuously calls the three major functions to keep the game going
  */
 int main (){
 	printf("Welcome to our VIRTUAL ESCAPE ROOM!\n");

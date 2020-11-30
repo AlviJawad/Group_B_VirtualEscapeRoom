@@ -12,6 +12,8 @@ extern void execute_look(const char *arg);
 
 extern void execute_examine(const char *arg);
 
+extern void execute_read(const char *arg);
+
 extern void execute_go(const char *arg);
 
 extern void execute_get(const char *arg);

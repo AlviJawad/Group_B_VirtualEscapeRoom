@@ -22,17 +22,40 @@ void execute_examine(const char *arg){
 		if (obj == NULL){
 			/* When the examination target doesn't match any object */
 			printf("Unfortunately, you couldn't find anything new\n");
-		} else if (!(obj->type == visible_object || obj->type == hidden_object || obj->type == usable_object)){
+		} else if (!(obj->type == visible_object)){
 			/* When the examination is not possible because of type restrictions */
 			printf("Maybe you should try to examine something different\n");
 		} else {
 			/* Show detailed description of the object */
 			printf("You carefully examine the %s\n", obj->tag);
 			printf("%s\n", obj->detailed_description);
+			if (strcmp(arg, "clock") == 0 && player->location == stage1){
+				trigger_puzzle1();
+			}
 		}
 	} else {
 		/* When there's no examination target */
 		printf("Maybe you should decide what you want to examine first\n");
+	}
+}
+
+void execute_read(const char *arg){
+	if ((arg != NULL)){
+		OBJECT_t *obj = get_object(arg);
+		if (obj == NULL){
+			/* When the examination target doesn't match any object */
+			printf("Unfortunately, no new information was found\n");
+		} else if (!(obj->type == hidden_object)){
+			/* When the examination is not possible because of type restrictions */
+			printf("This does not seem to be readable\n");
+		} else {
+			/* Show detailed description of the object */
+			printf("You read the contents of the %s\n", obj->tag);
+			printf("%s\n", obj->detailed_description);
+		}
+	} else {
+		/* When there's no examination target */
+		printf("Maybe you should decide what to read first\n");
 	}
 }
 
@@ -76,8 +99,23 @@ void execute_get(const char *arg){
 	} else if (obj->location != player->location){			// player and object are not in the same location
 		printf("You don't see any %s in here\n", arg);		// player might try to get key2 while in stage1
 	} else {
-		obj->location = player;				
-		printf("You moved %s to your bag\n", arg);
+		if (strcmp(arg, "key1") == 0){
+			/** Conditions for getting key1 **/
+			if (puzzle1->state == solved){
+				obj->location = player;				
+				printf("You moved %s to your bag\n", arg);
+			} else {
+				printf("You don't see any %s here\n", arg);
+			}
+		} else if (strcmp(arg, "key2") == 0){
+			/** Conditions for getting key2 **/
+			obj->location = player;				
+			printf("You moved %s to your bag\n", arg);
+		} else if (strcmp(arg, "key3") == 0){
+			/** Conditions for getting key3 **/
+			obj->location = player;				
+			printf("You moved %s to your bag\n", arg);
+		}
 	}
 }
 
@@ -121,9 +159,11 @@ void execute_use(const char *arg){
 				door3->state = open;
 				printf("You used %s on the ruby door\nThe door can now be opened\n", arg);
 			}
+		} else {
+			printf("Nothing happened!\n", arg);
 		}
 	} else {	
-		printf("You failed to use %s\n", arg);
+		printf("Nothing happened!\n", arg);
 	}
 }
 

@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "parsenexec.h"
+#include "puzzle.h"
 
 bool parse_and_execute(char *input){
 	/* Use the space delimiter to separate the command and argument */
@@ -24,9 +25,11 @@ bool parse_and_execute(char *input){
 		} else if (strcmp(command, "bag") == 0){			// User enters "bag"
 			execute_check();
 		} else if (strcmp(command, "use") == 0){			// User enters "use <arg>"
-			execute_use();
+			execute_use(arg);
 		} else if (strcmp(command, "open") == 0){			// User enters "open <arg>"
-			execute_open();
+			execute_open(arg);
+		} else if (strcmp(command, "read") == 0){			// User enters "read <arg>"
+			execute_read(arg);
 		} else if (strcmp(command, "ask") == 0){			// User enters "ask <arg>"
 			if (strcmp (arg, "hint") == 0){				// User asks for hint
 //				execute_hint();
